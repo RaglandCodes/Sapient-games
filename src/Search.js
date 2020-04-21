@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PlatformTag from './PlatformTag';
 export default function Search(props) {
   const [chosesenPlatforms, setChosenplatforms] = useState([]);
 
@@ -8,20 +7,40 @@ export default function Search(props) {
     if (idx === -1) {
       setChosenplatforms([...chosesenPlatforms, p]);
     } else {
-      // TODO remove item
+      setChosenplatforms(chosesenPlatforms.filter((platform) => platform !== p));
     }
   }
+
+  useEffect(() => {
+    console.dir(chosesenPlatforms);
+    console.log('^chosesenPlatforms');
+  }, [chosesenPlatforms]);
   return (
     <>
-      {props.platforms.map((platform) => (
-        <div
-          className="platform-tag"
-          onClick={() => togglePlatform(platform)}
-          key={platform}
-        >
-          {platform}
-        </div>
-      ))}
+      <form id="game-search-form">
+        <label htmlFor="search-field" id="search-label">
+          {' '}
+          Search for games
+        </label>
+        <input type="text" id="search-field" />
+      </form>
+      <div className="platform-tags">
+        {props.platforms.map((platform) => {
+          const exists = chosesenPlatforms.indexOf(platform) !== -1;
+          const classes = `platform-tag ${exists ? 'chosen-platform-tag' : ''}`;
+
+          console.log(`${classes} <== classes`);
+          return (
+            <div
+              className={classes}
+              onClick={() => togglePlatform(platform)}
+              key={platform}
+            >
+              {platform}
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }

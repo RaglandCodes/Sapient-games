@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import GameBox from './GameBox';
+import GameBox from './GameBox/GameBox';
 import Search from './Search';
 
 export default function Games({ preferences }) {
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState([]); // this has all the games
+  const [gamesToShow, setGamesToShow] = useState([]);
   const [platforms, setPlatforms] = useState([]);
 
   useEffect(() => {
     fetch('http://starlord.hackerearth.com/gamesext')
       .then((res) => res.json())
       .then((allGames) => {
-        allGames = allGames.slice(0, 45);
+        allGames = allGames.slice(0, 97);
 
         let uniqeGames = [];
         const map = new Map();
@@ -36,7 +37,7 @@ export default function Games({ preferences }) {
   }, [preferences]);
   return (
     <div>
-      {/* <Search platforms={platforms} /> */}
+      <Search platforms={platforms} />
       {games.map((game) => (
         <GameBox game={{ ...game }} key={game.url} />
       ))}

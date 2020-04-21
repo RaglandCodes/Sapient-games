@@ -1,10 +1,7 @@
 // Presentation component
 import React, { useState, useEffect } from 'react';
-
+import Stars from './Stars';
 export default function GameBox({ game }) {
-  //   console.log(`${game.url} <== game.url`);
-  //   console.dir(game);
-  //   console.log('^game');
   return (
     <div className="gameBox">
       <div className="gameBox--title">{game.title}</div>
@@ -13,7 +10,8 @@ export default function GameBox({ game }) {
         <div className="flex-one"></div>
         <span className="gamebox--year">{game.release_year}</span>
       </div>
-      <div className="gameBox--score">{game.score}</div>
+      {/* <div className="gameBox--score">{game.score}</div> */}
+      <Stars score={game.score} />
     </div>
   );
 }
