@@ -1,6 +1,6 @@
 ## TODO
 
-- Search
+- Sorting
 - Handle score with float
 - Pagination (instead of showing all elements at once)
 

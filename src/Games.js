@@ -54,7 +54,8 @@ export default function Games(props) {
     console.log(`${JSON.stringify(preferences, null, 2)} <== preferences`);
 
     if (preferences.useCustomPreferences) {
-      let filteredGames = [];
+      let filteredGames = games; // start with all the games, then add conditions one by one
+
       if (preferences.platforms.length > 0) {
         // filter by platform
         filteredGames = games.filter(
@@ -66,6 +67,20 @@ export default function Games(props) {
 
       // also filter by searchterm
       if (preferences.searchTerm.length > 0) {
+        filteredGames = filteredGames.filter(
+          (game) => game.title.toLowerCase().indexOf(preferences.searchTerm) !== -1
+        );
+
+        if (filteredGames.length === 0) {
+          setMessage('Nothing was found for your preferences');
+        } else {
+          // clear the previous message?
+          setMessage(null);
+        }
+
+        setGamesToShow(filteredGames);
+        console.dir(filteredGames);
+        console.log('^searchedResults');
         console.log('will search');
       }
     } else {
