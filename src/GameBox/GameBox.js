@@ -1,5 +1,5 @@
 // Presentation component
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Stars from './Stars';
 export default function GameBox({ game }) {
   return (

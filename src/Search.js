@@ -40,7 +40,18 @@ export default function Search(props) {
   }, [chosesenPlatforms]);
   return (
     <div className="search-container">
-      <h2>Filter Games</h2>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
+      >
+        <h2>Filter Games</h2>
+        <button onClick={() => clearAllFilters()}> Clear all filters</button>
+      </div>
+
       <h3>Search for games</h3>
 
       <form id="game-search-form" onSubmit={handleSearchSubmit}>
@@ -73,7 +84,6 @@ export default function Search(props) {
           );
         })}
       </div>
-      <button onClick={() => clearAllFilters()}> Clear all filters</button>
     </div>
   );
 }

@@ -6,6 +6,7 @@ export default function Games(props) {
   const [games, setGames] = useState([]); // this has all the games
   const [gamesToShow, setGamesToShow] = useState([]); // games to show to the user
   const [platforms, setPlatforms] = useState([]); // all the  available platforms
+  const [message, setMessage] = useState(null);
   const [preferences, setPreferences] = useState({
     platforms: [],
     searchTerm: '',
@@ -16,9 +17,15 @@ export default function Games(props) {
   };
   useEffect(() => {
     // fetch from API when component mounts
+    setMessage('⏳ Loading...please wait');
+
+    // This being http can cause some problems
     fetch('http://starlord.hackerearth.com/gamesext')
       .then((res) => res.json())
       .then((allGames) => {
+        setMessage(null); // remove the loading message
+
+        // when dubugging, use a smaller number of games to be managable
         allGames = allGames.slice(0, 97);
 
         let uniqeGames = [];
@@ -38,6 +45,7 @@ export default function Games(props) {
       })
       .catch((err) => {
         console.log(`${err} <== err`);
+        setMessage('⚠️ Somethig  went wrong. ');
       });
   }, []);
 
@@ -74,10 +82,12 @@ export default function Games(props) {
           preferences={preferences}
         />
       ) : null}
-
-      {gamesToShow.map((game) => (
-        <GameBox game={{ ...game }} key={game.url} />
-      ))}
+      <div className="message">{message}</div>
+      <div id="games-container">
+        {gamesToShow.map((game) => (
+          <GameBox game={{ ...game }} key={game.url} />
+        ))}
+      </div>
     </div>
   );
 }
