@@ -61,14 +61,15 @@ export default function Games(props) {
         filteredGames = games.filter(
           (game) => preferences.platforms.indexOf(game.platform) !== -1
         );
-        console.log(`${filteredGames.length} <== filteredGames.length`);
+        setMessage(null);
         setGamesToShow(filteredGames);
       }
 
       // also filter by searchterm
       if (preferences.searchTerm.length > 0) {
         filteredGames = filteredGames.filter(
-          (game) => game.title.toLowerCase().indexOf(preferences.searchTerm) !== -1
+          (game) =>
+            game.title.toLowerCase().indexOf(preferences.searchTerm.toLowerCase()) !== -1
         );
 
         if (filteredGames.length === 0) {
@@ -79,9 +80,6 @@ export default function Games(props) {
         }
 
         setGamesToShow(filteredGames);
-        console.dir(filteredGames);
-        console.log('^searchedResults');
-        console.log('will search');
       }
     } else {
       // show all games if user does NOT want filters

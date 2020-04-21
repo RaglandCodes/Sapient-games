@@ -65,7 +65,7 @@ export default function Search(props) {
             id="search-field"
             onChange={(e) => setSearchInput(e.target.value)}
           />
-          <input type="submit" />
+          <input type="submit" className="form--submit-btn" />
         </div>
       </form>
       <h3>Filter by platform</h3>

@@ -51,6 +51,21 @@ body {
 
 button {
   padding: 4px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+input {
+  border: 1px solid gray;
+}
+
+button:focus,
+button:hover,
+button:active,
+input:active,
+input:focus {
+  outline: none;
+  border: 2px solid var(--primary-colour);
 }
 /* ---  header  --- */
 
@@ -178,4 +193,10 @@ h3 {
   font-family: 'Lato', sans-serif;
   padding: 4px;
   font-size: 17px;
+  border-radius: 5px 0 0 5px;
+}
+
+.form--submit-btn {
+  border-radius: 0 5px 5px 0;
+  border: 1px solid gray;
 }
