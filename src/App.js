@@ -5,7 +5,10 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      Sapient games Arena
+      <div className="header">
+        <h1>SAPIENT GAMES ARENA</h1>
+        Search
+      </div>
       <Games />
     </div>
   );

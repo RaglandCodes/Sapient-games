@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import GameBox from './GameBox';
+import Search from './Search';
 
-import { nanoid } from 'nanoid';
-
-export default function Games() {
+export default function Games({ preferences }) {
   const [games, setGames] = useState([]);
+  const [platforms, setPlatforms] = useState([]);
+
   useEffect(() => {
     fetch('http://starlord.hackerearth.com/gamesext')
       .then((res) => res.json())
@@ -21,22 +22,21 @@ export default function Games() {
             });
           }
         }
-        uniqeGames = uniqeGames.slice(10);
+
+        setPlatforms([...new Set(uniqeGames.map((game) => game.platform))]);
         setGames(uniqeGames);
-        // allGames = allGames.map((game) => {
-        //   return {
-        //     ...game,
-        //     key: nanoid(5),
-        //   };
-        // });
       })
       .catch((err) => {
         console.log(`${err} <== err`);
       });
   }, []);
+
+  useEffect(() => {
+    console.log('preferences changed');
+  }, [preferences]);
   return (
     <div>
-      Games
+      {/* <Search platforms={platforms} /> */}
       {games.map((game) => (
         <GameBox game={{ ...game }} key={game.url} />
       ))}
