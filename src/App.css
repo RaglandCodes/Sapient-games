@@ -40,21 +40,35 @@ body {
   flex-grow: 1;
 }
 
-/* ---  ^_^  --- */
+:root {
+  --primary-colour: #e65100;
+}
+
+/* ---  header  --- */
 
 body {
   background-color: #f5f5f5;
 }
 
+.header {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  align-items: center;
+}
 h1 {
-  /* color: #fff; */
   font-size: 44px;
   font-family: 'Oswald', sans-serif;
-  text-align: center;
+  margin-left: 11px;
 }
-:root {
-  --primary-colour: #e65100;
+
+.header--filter-icon {
+  --icon-size: 33px;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  padding: 15px;
 }
+
 /* ---  GameBox  --- */
 .gameBox {
   border-radius: 4px;
@@ -68,7 +82,7 @@ h1 {
 .gameBox--title {
   font-family: 'Raleway', sans-serif;
   font-size: 23px;
-  font-weight: 400;
+  font-weight: 500;
 }
 .gameBox--row2 {
   width: 100%;
@@ -101,7 +115,16 @@ h1 {
 }
 /* --- Search --- */
 
+h2,
+h3 {
+  font-family: 'Raleway', sans-serif;
+}
+
+.search-container {
+  padding: 14px;
+}
 #search-label {
+  font-family: 'Raleway', sans-serif;
 }
 
 .platform-tags {
@@ -119,4 +142,12 @@ h1 {
 
 .chosen-platform-tag {
   background-color: #ff9100;
+}
+
+.form--text-btn-wrap {
+  display: flex;
+}
+
+#search-field {
+  flex-grow: 1;
 }

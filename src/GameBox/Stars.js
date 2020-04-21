@@ -29,15 +29,14 @@ export default function Stars({ score }) {
   }
   return (
     <div className="gamebox--stars">
-      {stars.map((star) => {
+      {stars.map((star, i) => {
         if (star === 'filled') {
-          return <StarFilled className="gamebox--star gamebox--star-coloured" />;
+          return <StarFilled className="gamebox--star gamebox--star-coloured" key={i} />;
         } else if (star === 'half') {
-          return <StarHalf className="gamebox--star gamebox--star-coloured" />;
+          return <StarHalf className="gamebox--star gamebox--star-coloured" key={i} />;
         }
-        return <StarOutlined className="gamebox--star" />;
+        return <StarOutlined className="gamebox--star" key={i} />;
       })}
-      {}
     </div>
   );
 }
